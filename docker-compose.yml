@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+  postgres:
+    image: postgres:14
+    container_name: pi-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: piadmin
+      POSTGRES_PASSWORD: piadminpass
+      POSTGRES_DB: privacyidea
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  privacyidea:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: privacyidea
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    ports:
+      - "8081:8080"
+    volumes:
+      - pi_files:/data
+
+volumes:
+  postgres_data:
+  pi_files:
