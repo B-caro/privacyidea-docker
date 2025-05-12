@@ -15,3 +15,7 @@ ENV PI_PORT=8080
 
 # Ejecutamos init en el primer arranque
 CMD ["/bin/sh", "-c", "/init.sh && /usr/local/bin/docker-entrypoint.sh"]
+
+RUN mkdir -p /etc/privacyidea && \
+    touch /etc/privacyidea/uuid.txt && \
+    chown -R privacyidea:privacyidea /etc/privacyidea
