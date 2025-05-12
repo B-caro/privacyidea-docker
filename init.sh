@@ -13,6 +13,6 @@ echo "➡️  Creando realm..."
 pi-manage realm create adminrealm adminresolver
 
 echo "➡️  Creando política de login para WebUI..."
-pi-manage policy create loginpolicy webui login adminrealm admin
+pi-manage policy create loginpolicy webui login --realm adminrealm --user admin
 
 echo "✅ Configuración inicial completada."
